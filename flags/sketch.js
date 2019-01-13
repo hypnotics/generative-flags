@@ -222,6 +222,23 @@ function setup () {
     symbols[floor(random() * symbols.length)](version)
   }
 
+  // Icons
+  let icons = []
+  let MoonIcon = function (version) {
+    console.log('Adding Moon ' + version)
+    if (version == 1) {
+      image(moon, 198, 105, 200, 200)
+    } else {
+      translate(width / 2, height / 2)
+      rotate(PI / 4)
+      image(moon, -104, -94, 200, 200)
+    }
+  }
+  icons.push(MoonIcon)
+  let randomIcon = function (version) {
+    icons[floor(random() * icons.length)](version)
+  }
+
   // Draw a flag
 
   // Apply layout (1-5 fields)
@@ -237,13 +254,9 @@ function setup () {
   stroke(randomColor())
   randomSymbol(floor(random() * 3) + 1)
 
-  // Apply image
+  // Apply icon
   tint(randomColor())
-  // translate(width / 2, height / 2)
-  // rotate(PI / 4)
-  // image(moon, -104, -94, 200, 200)
-
-  image(moon, 198, 105, 200, 200)
+  randomIcon(floor(random() * 3) + 1)
 }
 
 function draw () {
