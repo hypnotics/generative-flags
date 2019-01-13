@@ -1,3 +1,7 @@
+let moon
+function preload () {
+  moon = loadImage('img/moon.png')
+}
 
 function setup () {
   // Create the canvas
@@ -122,10 +126,9 @@ function setup () {
       triangle(0, 400, 600, 400, 300, 0)
     }
   }
-  let CrossOverlay = function (version) {
+  let CrossOverlay = function (version, size = 60) {
     noStroke()
     console.log('Adding cross ' + version)
-    let size = 60
     if (version === 1) {
       rect(300 - (size / 2), 0, size, 400)
       rect(0, 200 - (size / 2), 600, size)
@@ -134,6 +137,15 @@ function setup () {
       rect(0, 200 - (size / 2), 600, size)
     }
   }
+
+  let DoubleCrossOverlay = function (version, size = 60) {
+    noStroke()
+    console.log('Adding 2x cross ' + version)
+    CrossOverlay(version)
+    fill(randomColor())
+    CrossOverlay(version, 40)
+  }
+
   let DiagonalOverlay = function (version) {
     console.log('Adding diagonal ' + version)
     strokeWeight(60)
@@ -149,6 +161,7 @@ function setup () {
   shapes.push(CircleOverlay)
   shapes.push(SideTriangleOverlay)
   shapes.push(CrossOverlay)
+  shapes.push(DoubleCrossOverlay)
   shapes.push(DiagonalOverlay)
   // shapes.push(BottomTriangleOverlay)
   let randomShape = function (version) {
@@ -223,6 +236,14 @@ function setup () {
   fill(randomColor())
   stroke(randomColor())
   randomSymbol(floor(random() * 3) + 1)
+
+  // Apply image
+  tint(randomColor())
+  // translate(width / 2, height / 2)
+  // rotate(PI / 4)
+  // image(moon, -104, -94, 200, 200)
+
+  image(moon, 198, 105, 200, 200)
 }
 
 function draw () {
