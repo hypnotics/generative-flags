@@ -240,23 +240,32 @@ function setup () {
   }
 
   // Draw a flag
+  let chanceOfOverlay = 0.9
+  let chanceOfSymbol = 0.7
+  let chanceOfIcon = 0.2
 
   // Apply layout (1-5 fields)
   randomLayout(floor(random() * 5) + 1)
 
   // Apply overlay
-  fill(randomColor())
-  stroke(randomColor())
-  randomShape(floor(random() * 3) + 1)
+  if (random() <= chanceOfOverlay) {
+    fill(randomColor())
+    stroke(randomColor())
+    randomShape(floor(random() * 3) + 1)
+  }
 
   // Apply symbol
-  fill(randomColor())
-  stroke(randomColor())
-  randomSymbol(floor(random() * 3) + 1)
+  if (random() <= chanceOfSymbol) {
+    fill(randomColor())
+    stroke(randomColor())
+    randomSymbol(floor(random() * 3) + 1)
+  }
 
   // Apply icon
-  tint(randomColor())
-  randomIcon(floor(random() * 3) + 1)
+  if (random() <= chanceOfIcon) {
+    tint(randomColor())
+    randomIcon(floor(random() * 3) + 1)
+  }
 }
 
 function draw () {
